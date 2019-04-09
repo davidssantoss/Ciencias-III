@@ -35,7 +35,8 @@ def getInfoFile():
     mostrarRes(cola_ord.items)
     burbuja(cola_ord.items)
     organizado = cola_ord.items
-    mostrarRes(organizado)  
+    mostrarRes(organizado)
+    putInfoFile(organizado)
         
 def burbuja(arr):
     n = len(arr)
