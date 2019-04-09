@@ -1,11 +1,15 @@
-H. P. Lovecraft, La llamada de cthulhu, Terror 
-J. R. R. Tolkien, El silmarillion, Fantasia 
-Gabriel Garcia Marquez, Cien anos de soledad, Novela 
-Julio Cortazar, Rayuela, Ficcion 
-H. P. Lovecraft, Dagon, Terror 
-Edgar Alan Poe, El cuervo, Terror 
-J. R. R. Tolkien, El senor de los anillos, Fantasia 
-H. P. Lovecraft, En las montanas de la locura, Terror 
-Gabriel Garcia Marquez, Memoria de mis putas tristes, Novela prostitucion 
-Julio Cortazar, Bestiario, Cuento ficcion 
-J. R. R. Tolkien, Beren y luthien, Fantasia 
+H. P. Lovecraft, La llamada de cthulhu, Terror, 30 
+J. R. R. Tolkien, El silmarillion, Fantasia, 200 
+Gabriel Garcia Marquez, Cien anos de soledad, Novela, 471 
+Julio Cortazar, Rayuela, Ficcion, 627 
+H. P. Lovecraft, Dagon, Terror, 10 
+Edgar Allan Poe, El cuervo, Terror, 85 
+J. R. R. Tolkien, El senor de los anillos, Fantasia, 900 
+H. P. Lovecraft, En las montanas de la locura, Terror, 157 
+Gabriel Garcia Marquez, Memoria de mis putas tristes, Novela prostitucion, 109 
+Julio Cortazar, Bestiario, Cuento ficcion, 60 
+J. R. R. Tolkien, Beren y luthien, Fantasia, 300 
+Gabriel Garcia Marquez, El otono del patriarca, Realismo magico, 271 
+Edgar Allan Poe, El escarabajo de oro, Terror, 50 
+Julio Verne, Viaje al centro de la tierra, Ciencia ficcion, 360 
+J. R. R. Tolkien, El hobbit, Fantasia, 120 
