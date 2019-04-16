@@ -3,13 +3,18 @@ from arbol import *
 
 pila = Pila()
 def run():
+    print ("\t\t*** EVALUADOR DE EXPRESIONES POSTFIJA ***\n")
     archivo = open("./expresiones_in.txt", 'r')
+    print("las expresiones del archivo son: \n")
+    i = 1
     for linea in archivo.readlines():
-        x = linea.split("\n")
+        x = linea.split("\n")        
+        print("%d) " %i + x[0])
         convertir(x[0].split(" "), pila)
         resultado = evaluar(pila.desapilar())
-        print(str(resultado))
+        print("El valor de la expresion es: %s" % resultado + "\n")
         writeResult(str(resultado)+"\n")
+        i += 1
     archivo.close()
 
     
