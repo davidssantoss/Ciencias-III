@@ -1,10 +1,10 @@
 class Pila:
     """ Representa una pila con operaciones de apilar, desapilar y
-        verificar si está vacía. """
+        verificar si esta vacia. """
  
     def __init__(self):
-        """ Crea una pila vacía. """
-        # La pila vacía se representa con una lista vacía
+        """ Crea una pila vacia. """
+        # La pila vacia se representa con una lista vacia
         self.items=[]
 
     def apilar(self, x):
@@ -14,12 +14,12 @@ class Pila:
 
     def desapilar(self):
         """ Devuelve el elemento tope y lo elimina de la pila.
-            Si la pila está vacía levanta una excepción. """
+            Si la pila esta vacia levanta una excepcion. """
         try:
             return self.items.pop()
         except IndexError:
-            raise ValueError("La pila está vacía")
+            raise ValueError("La pila esta vacia")
 
     def es_vacia(self):
-        """ Devuelve True si la lista está vacía, False si no. """
+        """ Devuelve True si la lista esta vacia, False si no. """
         return self.items == []
