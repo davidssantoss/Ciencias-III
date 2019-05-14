@@ -7,7 +7,7 @@ t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
-t_EQUALS = r':='
+t_EQUALS = r'='
 t_NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
 def t_NUMBER(t):
@@ -21,9 +21,19 @@ def t_error(t):
     t.lexer.skip(1)
 
 lex.lex() # Build the lexer
+def getFile():
+    archivo = open("./expresiones_in.txt", 'r')
+    print("las expresiones del archivo son: \n")
+    for linea in archivo.readlines():
+        x = linea.split(" ")        
+    print x
+    return str(x)
 
-lex.input("x = 3 - 4 + 5 * 6")
+lex.input(getFile())
 while True:
     tok = lex.token()
     if not tok: break
     print (str(tok.value) + " - " + str(tok.type))
+
+
+    
