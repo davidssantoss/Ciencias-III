@@ -1,4 +1,5 @@
 import ply.lex as lex
+import re
 
 tokens = [ 'NAME','NUMBER','PLUS','MINUS','TIMES','DIVIDE', 'EQUALS' ]
 
@@ -24,16 +25,26 @@ lex.lex() # Build the lexer
 def getFile():
     archivo = open("./expresiones_in.txt", 'r')
     print("las expresiones del archivo son: \n")
-    for linea in archivo.readlines():
-        x = linea.split(" ")        
-    print x
-    return str(x)
+    
+    for linea in archivo.readlines():               
+        x = re.split("\s", linea)            
+    return x
 
+def validarExpresion():
+    exp = getFile()
+    for lista in exp:
+        lex.input(lista)
+        tok = lex.token()
+        if not tok: break
+        print (str(tok.value) + " - " + str(tok.type))
+        
+validarExpresion()
+"""
 lex.input(getFile())
 while True:
     tok = lex.token()
     if not tok: break
     print (str(tok.value) + " - " + str(tok.type))
-
+"""
 
     
