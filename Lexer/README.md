@@ -1,4 +1,4 @@
-#Analisis lexico de una expresion postfija
+# Analisis lexico de una expresion postfija
 
 ## Se utiliza la libreria ply con archivos para evaluar cada digito con su respectivo token
 
