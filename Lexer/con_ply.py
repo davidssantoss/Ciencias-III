@@ -39,12 +39,6 @@ def validarExpresion():
         print (str(tok.value) + " - " + str(tok.type))
         
 validarExpresion()
-"""
-lex.input(getFile())
-while True:
-    tok = lex.token()
-    if not tok: break
-    print (str(tok.value) + " - " + str(tok.type))
-"""
+
 
     
