@@ -5,10 +5,12 @@ import re
 
 def validarExpresion():
 
-    str = "5 5 + 9 * a"
+    str = "5 5 & 9 * a"
     y = re.split("\s", str)
 
     for lista in y:
+        print lista
+        
         buscarDec(lista)
         buscarVar(lista)
         buscarOpe(lista)
