@@ -61,6 +61,7 @@ funcionBooleana = ('frente_libre',
     'no_orientado_al_oeste',)
 
 tokens = declaracionPrograma + declaracionProcedimiento + expresion + funcionBooleana + ('IDENTIFICADOR','DECIMAL')
+t_ignore = ' \t'
 def t_DECIMAL(t):
     r'\d+'
     t.value = int(t.value)
@@ -74,13 +75,28 @@ def t_error(t):
     t.lexer.skip(1)
 
 lista = []
+def getFile():
+    file = open('codigo.in', 'r')
+    filas = (file.read().splitlines())
+    print(filas)
+    for exp in filas:
+        resultado = tokens(exp)
+        setFile(resultado)
+        lista = []
+        print(exp)
+    file.close()
+def setFile(result):
+    file = open('codigo.out', 'a')
+    file.write(str(result) + '\n')
+    file.close()
+
+getFile()
 lex.lex()
 
-def _tokens(expresion):
+def tokens(expresion):
     lex.input(expresion)
     while True:
         tok = lex.token()
         if not tok: break
-        lista.append(str(tok.value) + " _> " + str(tok.type))
+        lista.append(str(tok.value) + " -> " + str(tok.type))
     return lista
-print(_tokens("inicio9"))
