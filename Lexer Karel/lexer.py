@@ -57,21 +57,31 @@ funcionBooleana = ('frente_libre',
     'no_orientado_al_sur',
     'no_orientado_al_este',
     'no_orientado_al_oeste',)
-
-tokens = ('declaracionPrograma','declaracionProcedimiento','CLSLN','DECIMAL','EXPRESION')
+reserved = {'ClausulaY': 'y',
+    'ClausulaNo': 'no',
+    'ClausulaAtomica': 'si_es_cero',
+    'ExpresionSi': 'si'}
+tokens = ['declaracionPrograma','declaracionProcedimiento','CLSLN','DECIMAL','EXPRESION', "STRING"] + list(reserved.values())
 t_ignore = ' \t'
+
 def t_EXPRESION(t):
-    r'((\bgira | \bcoge | \bdeja) \- (\bizquierda | \bzumbador))|(\bapagate | \bavanza | \binicio | \bfin)'
+    r'(\bgira | \bcoge | \bdeja) \- (\bizquierda | \bzumbador)'
+    #| (\bapagate | \bavanza | \binicio | \bfin)'
 def t_declaracionPrograma(t):
     r'(\biniciar | \binicia | \btermina | \bfinalizar) \- (\bprograma | \bejecucion)' 
     return t
 def t_declaracionProcedimiento(t):
-    r'(\bdefine) \- (\bnueva) \- (\binstruccion)'
+    r'((\bdefine) \- (\bnueva) \- (\binstruccion)) | (\bcomo)'
     return t
+def funreg():
+    return [r'\{}' for i in expresion]
 def t_CLSLN(t):
     r'\;'
     return t
-    
+def t_STRING(t):
+    r'\bgira \- \bderecha'
+    return t
+
 def t_DECIMAL(t):
     r'\d+'
     t.value = int(t.value)
