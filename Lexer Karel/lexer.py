@@ -26,44 +26,54 @@ EOF
 @Link de documentacion de pascal para el lexer: https://omegaup.com/karel.js/manual/KarelSyntax_es.html#prod21
 """
 declaracionPrograma = ('PROGRAMA',
-    'iniciar-programa',
-    'inicia-ejecucion',
-    'termina-ejecucion',
-    'finalizar-programa',)
-declaracionProcedimiento = ('define-nueva-instruccion',
+    'iniciar_programa',
+    'inicia_ejecucion',
+    'termina_ejecucion',
+    'finalizar_programa',)
+declaracionProcedimiento = ('define_nueva_instruccion',
     'como',)
 expresion = ('LLAMADA','SI', 'MIENTRAS', 'PARA',
     'apagate',
-    'gira-izquierda',
+    'gira_izquierda',
     'avanza',
-    'coge-zumbador',
-    'deja-zumbador',
-    'sal-de-instruccion',
+    'coge_zumbador',
+    'deja_zumbador',
+    'sal_de_instruccion',
     'inicio',
     'fin', )
-funcionBooleana = ('frente-libre',
-    'frente-bloqueado',
-    'izquierda-libre',
-    'izquierda-bloqueada',
-    'derecha-libre',
-    'derecha-bloqueada',
-    'junto-a-zumbador',
-    'no-junto-a-zumbador',
-    'algun-zumbador-en-la-mochila',
-    'ningun-zumbador-en-la-mochila',
-    'orientado-al-norte',
-    'orientado-al-sur',
-    'orientado-al-este',
-    'orientado-al-oeste',
-    'no-orientado-al-norte',
-    'no-orientado-al-sur',
-    'no-orientado-al-este',
-    'no-orientado-al-oeste',)
+funcionBooleana = ('frente_libre',
+    'frente_bloqueado',
+    'izquierda_libre',
+    'izquierda_bloqueada',
+    'derecha_libre',
+    'derecha_bloqueada',
+    'junto_a_zumbador',
+    'no_junto_a_zumbador',
+    'algun_zumbador_en_la_mochila',
+    'ningun_zumbador_en_la_mochila',
+    'orientado_al_norte',
+    'orientado_al_sur',
+    'orientado_al_este',
+    'orientado_al_oeste',
+    'no_orientado_al_norte',
+    'no_orientado_al_sur',
+    'no_orientado_al_este',
+    'no_orientado_al_oeste',)
 
-tokens = declaracionPrograma + declaracionProcedimiento + expresion + funcionBooleana + ('IDENTIFICADOR')
+tokens = declaracionPrograma + declaracionProcedimiento + expresion + funcionBooleana + ('IDENTIFICADOR','DECIMAL')
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+lista = []
 lex.lex()
+
+def _tokens(expresion):
+    lex.input(expresion)
+    while True:
+        tok = lex.token()
+        if not tok: break
+        lista.append(str(tok.value) + " _> " + str(tok.type))
+    return lista
+_tokens("inicio")
