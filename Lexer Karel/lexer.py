@@ -61,6 +61,13 @@ funcionBooleana = ('frente_libre',
     'no_orientado_al_oeste',)
 
 tokens = declaracionPrograma + declaracionProcedimiento + expresion + funcionBooleana + ('IDENTIFICADOR','DECIMAL')
+def t_DECIMAL(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+def t_IDENTIFICADOR(t):
+    r'[a-zA-Z]'
+    return t
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
@@ -76,4 +83,4 @@ def _tokens(expresion):
         if not tok: break
         lista.append(str(tok.value) + " _> " + str(tok.type))
     return lista
-_tokens("inicio")
+print(_tokens("inicio9"))
