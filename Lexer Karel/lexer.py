@@ -4,7 +4,6 @@ import re
 """
 Declaracion del programa
 Declaracion de procedimiento
-Expresion general
 Expresion
 Expresion llamada
 ExpresionSi
@@ -25,8 +24,7 @@ Letra
 EOF
 @Link de documentacion de pascal para el lexer: https://omegaup.com/karel.js/manual/KarelSyntax_es.html#prod21
 """
-declaracionPrograma = ('PROGRAMA',
-    'iniciar_programa',
+declaracionPrograma = ('iniciar_programa',
     'inicia_ejecucion',
     'termina_ejecucion',
     'finalizar_programa',)
@@ -60,14 +58,23 @@ funcionBooleana = ('frente_libre',
     'no_orientado_al_este',
     'no_orientado_al_oeste',)
 
-tokens = declaracionPrograma + declaracionProcedimiento + expresion + funcionBooleana + ('IDENTIFICADOR','DECIMAL')
+tokens = ('declaracionPrograma','declaracionProcedimiento','CLSLN','DECIMAL','EXPRESION')
 t_ignore = ' \t'
+def t_EXPRESION(t):
+    r'((\bgira | \bcoge | \bdeja) \- (\bizquierda | \bzumbador))|(\bapagate | \bavanza | \binicio | \bfin)'
+def t_declaracionPrograma(t):
+    r'(\biniciar | \binicia | \btermina | \bfinalizar) \- (\bprograma | \bejecucion)' 
+    return t
+def t_declaracionProcedimiento(t):
+    r'(\bdefine) \- (\bnueva) \- (\binstruccion)'
+    return t
+def t_CLSLN(t):
+    r'\;'
+    return t
+    
 def t_DECIMAL(t):
     r'\d+'
     t.value = int(t.value)
-    return t
-def t_IDENTIFICADOR(t):
-    r'[a-zA-Z]'
     return t
 
 def t_error(t):
@@ -75,28 +82,35 @@ def t_error(t):
     t.lexer.skip(1)
 
 lista = []
-def getFile():
-    file = open('codigo.in', 'r')
-    filas = (file.read().splitlines())
-    print(filas)
-    for exp in filas:
-        resultado = tokens(exp)
-        setFile(resultado)
-        lista = []
-        print(exp)
-    file.close()
-def setFile(result):
-    file = open('codigo.out', 'a')
-    file.write(str(result) + '\n')
-    file.close()
 
-getFile()
-lex.lex()
-
-def tokens(expresion):
+def _tokens(expresion):
+    #print(expresion)
     lex.input(expresion)
     while True:
         tok = lex.token()
         if not tok: break
         lista.append(str(tok.value) + " -> " + str(tok.type))
     return lista
+
+def getFile():
+    file = open('codigo.in', 'r')
+    filas = (file.read().splitlines())   
+    clearFile()     
+    for exp in filas:      
+        resultado = _tokens(exp)
+        setFile(resultado)
+        #lista = []
+        #print(exp)     
+    file.close()
+    
+def setFile(result):
+    file = open('codigo.out', 'a')
+    file.write(str(result) + '\n')
+    file.close()
+def clearFile():
+    file = open('codigo.out', 'w')
+    file.write('')
+    file.close
+
+lex.lex()
+getFile()
