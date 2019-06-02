@@ -24,62 +24,50 @@ Letra
 EOF
 @Link de documentacion de pascal para el lexer: https://omegaup.com/karel.js/manual/KarelSyntax_es.html#prod21
 """
-declaracionPrograma = ('iniciar_programa',
-    'inicia_ejecucion',
-    'termina_ejecucion',
-    'finalizar_programa',)
-declaracionProcedimiento = ('define_nueva_instruccion',
-    'como',)
-expresion = ('LLAMADA','SI', 'MIENTRAS', 'PARA',
-    'apagate',
-    'gira_izquierda',
-    'avanza',
-    'coge_zumbador',
-    'deja_zumbador',
-    'sal_de_instruccion',
-    'inicio',
-    'fin', )
-funcionBooleana = ('frente_libre',
-    'frente_bloqueado',
-    'izquierda_libre',
-    'izquierda_bloqueada',
-    'derecha_libre',
-    'derecha_bloqueada',
-    'junto_a_zumbador',
-    'no_junto_a_zumbador',
-    'algun_zumbador_en_la_mochila',
-    'ningun_zumbador_en_la_mochila',
-    'orientado_al_norte',
-    'orientado_al_sur',
-    'orientado_al_este',
-    'orientado_al_oeste',
-    'no_orientado_al_norte',
-    'no_orientado_al_sur',
-    'no_orientado_al_este',
-    'no_orientado_al_oeste',)
-reserved = {'ClausulaY': 'y',
-    'ClausulaNo': 'no',
-    'ClausulaAtomica': 'si_es_cero',
-    'ExpresionSi': 'si'}
-tokens = ['declaracionPrograma','declaracionProcedimiento','CLSLN','DECIMAL','EXPRESION', "STRING"] + list(reserved.values())
+
+tokens = ['declaracionPrograma','declaracionProcedimiento','CLSLN','DECIMAL','EXPRESION',"STRING","Funcion_Booleana","ClausulaY","ClausulaNo",
+"ClausulaAtomica", "ExpresionSi","ExpresionMientras","ExpresionPara"]
 t_ignore = ' \t'
+def t_ExpresionPara(t):
+    r'(repetir|veces)'
+def t_ExpresionMientras(t):
+    r'(mientras|hacer)'
+    return t
+def t_ExpresionSi(t):
+    r'(si|entonces|sino)'
+    return t
+def t_ClausulaAtomica(t):
+    r'si-es-cero'
+    return t
+def t_ClausulaNo(t):
+    r'no '
+    return t
+def t_ClausulaY(t):
+    r'y'
+    return t
+
+def t_Funcion_Booleana(t):
+    r'(frente-libre|frente-bloqueado|izquierda-libre|izquierda-bloqueada|derecha-libre|derecha-bloqueada|junto-a-zumbador|no-junto-a-zumbador|algun-zumbador-en-la-mochila|ningun-zumbador-en-la-mochila|orientado-al-norte|orientado-al-sur|orientado-al-este|orientado-al-oeste|no-orientado-al-norte|no-orientado-al-sur|no-orientado-al-este|no-orientado-al-oeste)'
+    return t
 
 def t_EXPRESION(t):
-    r'(\bgira | \bcoge | \bdeja) \- (\bizquierda | \bzumbador)'
-    #| (\bapagate | \bavanza | \binicio | \bfin)'
+    r'(gira-izquierda|coge-zumbador|deja-zumbador|sal-de-instruccion|apagate|avanza|inicio|fin;)'
+    return t
+
 def t_declaracionPrograma(t):
-    r'(\biniciar | \binicia | \btermina | \bfinalizar) \- (\bprograma | \bejecucion)' 
+    r'(iniciar-programa|inicia-ejecucion|termina-ejecucion|finalizar-programa)' 
     return t
+
 def t_declaracionProcedimiento(t):
-    r'((\bdefine) \- (\bnueva) \- (\binstruccion)) | (\bcomo)'
+    r'(define-nueva-instruccion|como)'
     return t
-def funreg():
-    return [r'\{}' for i in expresion]
+
 def t_CLSLN(t):
     r'\;'
     return t
+
 def t_STRING(t):
-    r'\bgira \- \bderecha'
+    r'(\w+-\w+|w+)'
     return t
 
 def t_DECIMAL(t):
@@ -92,8 +80,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 lista = []
-
-def _tokens(expresion):
+lex.lex()
+def tokens(expresion):
     #print(expresion)
     lex.input(expresion)
     while True:
@@ -101,26 +89,3 @@ def _tokens(expresion):
         if not tok: break
         lista.append(str(tok.value) + " -> " + str(tok.type))
     return lista
-
-def getFile():
-    file = open('codigo.in', 'r')
-    filas = (file.read().splitlines())   
-    clearFile()     
-    for exp in filas:      
-        resultado = _tokens(exp)
-        setFile(resultado)
-        #lista = []
-        #print(exp)     
-    file.close()
-    
-def setFile(result):
-    file = open('codigo.out', 'a')
-    file.write(str(result) + '\n')
-    file.close()
-def clearFile():
-    file = open('codigo.out', 'w')
-    file.write('')
-    file.close
-
-lex.lex()
-getFile()
