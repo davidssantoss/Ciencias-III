@@ -7,5 +7,5 @@ for x in text:
     lexer.input(x)
     token = lexer.token()
     while token is not None:
-        print token.type, token.value
+        print(token.type, token.value)
         token = lexer.token()
