@@ -1,0 +1,10 @@
+certificado primer {
+    "David Santos",2015,"sistemas";
+    10,"ciencias3";
+    50;
+}
+certificado segundo {
+    "Alejandro Daza",1993,"docente";
+    10,"ciencias3";
+    47;
+}
