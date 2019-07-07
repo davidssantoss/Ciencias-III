@@ -6,14 +6,18 @@
 <p>{{ En el siguiente certificado se realiza la constancia de la participacion en esta }}</p>
 <table id="list" class="table table-striped table-bordered">
   <thead>
-    <tr>      
+    <tr>
+        <th>David Santos</th>
+        <th>2015</th>
+        <th>sistemas</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="d in data">      
+    <tr ng-repeat="d in data">
+        <td>{{d.David Santos}}</td>
+        <td>{{d.2015}}</td>
+        <td>{{d.sistemas}}</td>
       <td class="text-right">
-          <a href="#/segundoPrimer/{{d.Id}}"></a>
-          <a href="#/tercerPrimer/{{d.Id}}"></a>
       </td>
     </tr>
   </tbody>
