@@ -36,7 +36,7 @@ def main(debug=False):
     for certificate in certificado_model.certificado:
         # For each entity generate html file
         with open(join(srcgen_folder,
-            "agregar%s.html" % certificate.name.capitalize()), 'w') as f:
+            "Certificado %s.html" % certificate.name.capitalize()), 'w') as f:
             f.write(template.render(certificado=certificate))
 
 

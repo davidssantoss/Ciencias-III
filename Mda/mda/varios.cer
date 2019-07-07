@@ -1,14 +1,14 @@
-certificado primer {
+certificado david {
     "David Santos",2015,"sistemas";
     10,"ciencias3";
     50;
 }
-certificado segundo {
+certificado alejandro {
     "Alejandro Daza",1993,"docente";
     10,"ciencias3";
     47;
 }
-certificado tercer {
+certificado camilo {
     "Camilo Santos",2019,"administracion deportiva";
     82,"Contabilidad";
     37;
