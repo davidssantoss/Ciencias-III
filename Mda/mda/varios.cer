@@ -8,3 +8,8 @@ certificado segundo {
     10,"ciencias3";
     47;
 }
+certificado tercer {
+    "Camilo Santos",2019,"administracion deportiva";
+    82,"Contabilidad";
+    37;
+}

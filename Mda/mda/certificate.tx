@@ -10,7 +10,7 @@ Certificate:
     'certificado' name=ID '{'
                                     //Persona, actividades, nota
         persona=Persona ';'
-        actividad+=Actividad ';'
+        actividad=Actividad ';'
         nota=Nota ';'
     '}'
 ;

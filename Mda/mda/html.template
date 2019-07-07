@@ -7,16 +7,27 @@
 <table id="list" class="table table-striped table-bordered">
   <thead>
     <tr>
-        <th>{{certificado.persona.name}}</th>
-        <th>{{certificado.persona.code}}</th>
-        <th>{{certificado.persona.project}}</th>
+        <th>Nombre completo</th>
+        <th>Codigo</th>
+        <th>Projecto curricular</th>
     </tr>
   </thead>
+  <tr>
+        <td>{{certificado.persona.name}}</td>
+        <td>{{certificado.persona.code}}</td>
+        <td>{{certificado.persona.project}}</td>
+  </tr>
   <tbody>
-    <tr ng-repeat="d in data">
-        <td>{{'{{'}}d.{{certificado.persona.name}}{{'}}'}}</td>
-        <td>{{'{{'}}d.{{certificado.persona.code}}{{'}}'}}</td>
-        <td>{{'{{'}}d.{{certificado.persona.project}}{{'}}'}}</td>
+    <p>Se muestra las actividades con la que el usuario: </p>
+    <tr>
+        <th>Id actividad</th>
+        <th>Nombre de actividad</th>
+        <th>Nota</th>
+    </tr>
+    <tr ng-repeat="d in data">        
+        <td>{{'{{'}}d.{{certificado.actividad.id}}{{'}}'}}</td>
+        <td>{{'{{'}}d.{{certificado.actividad.name}}{{'}}'}}</td>
+        <td>{{'{{'}}d.{{certificado.nota.value}}{{'}}'}}</td>
       <td class="text-right">
       </td>
     </tr>
