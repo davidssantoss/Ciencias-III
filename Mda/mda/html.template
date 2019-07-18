@@ -1,9 +1,8 @@
-// template for html table view
 <div ng-controller="{{certificado.name|capitalize}}Ctrl">
 <div class="jumbotron text-center">
-<h2>{{'{{'}} Certificado {{'}}'}}</h2>
+<h2> Certificado </h2>
 <hr>
-<p>{{'{{'}} En el siguiente certificado se realiza la constancia de la participacion en esta {{'}}'}}</p>
+<p> En el siguiente certificado se realiza la constancia de la participacion en esta </p>
 <table id="list" class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -25,9 +24,9 @@
         <th>Nota</th>
     </tr>
     <tr ng-repeat="d in data">        
-        <td>{{'{{'}}d.{{certificado.actividad.id}}{{'}}'}}</td>
-        <td>{{'{{'}}d.{{certificado.actividad.name}}{{'}}'}}</td>
-        <td>{{'{{'}}d.{{certificado.nota.value}}{{'}}'}}</td>
+        <td>{{certificado.actividad.id}}</td>
+        <td>{{certificado.actividad.name}}</td>
+        <td>{{certificado.nota.value}}</td>
       <td class="text-right">
       </td>
     </tr>
